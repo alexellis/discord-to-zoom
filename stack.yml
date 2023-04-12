@@ -1,0 +1,22 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  discord-start-zoom:
+    lang: golang-middleware
+    handler: ./discord-start-zoom
+    image: alexellis2/discord-start-zoom:latest
+    environment:
+      zoom_api_url: https://api.zoom.us/v2
+      print_input: false
+      write_timeout: 60s
+    environment_file:
+    - ./zoom_config.yaml
+    - ./discord_config.yaml
+    secrets:
+      - zoom-account-id
+      - zoom-client-id
+      - zoom-client-secret
+      - discord-bot-token
+      - discord-public-key
