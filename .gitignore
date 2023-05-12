@@ -3,3 +3,4 @@ build
 .secrets
 /zoom_config.yaml
 /discord_config.yaml
+/tunnel.sh
