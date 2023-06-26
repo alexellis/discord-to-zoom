@@ -108,6 +108,8 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !validUser(msg) {
+		log.Printf("User %s is not authorized to create a Zoom meeting", msg.Member.User.Username)
+
 		commandRes := DiscordResponse{
 			Type: CHANNEL_MESSAGE_WITH_SOURCE,
 			Data: DiscordResponseData{
@@ -164,12 +166,11 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func validUser(msg DiscordInteraction) bool {
-	discriminator := msg.Member.User.Discriminator
+
 	username := msg.Member.User.Username
-	fullUsername := fmt.Sprintf("%s#%s", username, discriminator)
 
 	for _, u := range usernames {
-		if u == fullUsername {
+		if u == username {
 			return true
 		}
 	}

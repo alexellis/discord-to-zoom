@@ -6,7 +6,7 @@ functions:
   discord-start-zoom:
     lang: golang-middleware
     handler: ./discord-start-zoom
-    image: alexellis2/discord-start-zoom:0.0.1
+    image: alexellis2/discord-start-zoom:0.0.4
     environment:
       zoom_api_url: https://api.zoom.us/v2
       print_input: false
